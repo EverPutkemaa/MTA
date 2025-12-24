@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.proto.marginalapplication.MarginalAppController"
+      spacing="15" style="-fx-padding: 20; -fx-font-family: 'Segoe UI'; -fx-font-size: 12;">
+
+    <!-- Title -->
+    <Label text="Marginal Trading Application" style="-fx-font-size: 24; -fx-font-weight: bold;"/>
+
+    <!-- Input Fields Section -->
+    <TitledPane text="Input Fields" collapsible="false" style="-fx-font-size: 14;">
+        <GridPane hgap="10" vgap="15" style="-fx-padding: 15;">
+
+            <!-- Buy Price -->
+            <Label text="Buy Price:" GridPane.columnIndex="0" GridPane.rowIndex="0"
+                   style="-fx-font-weight: bold;"/>
+            <TextField fx:id="buyPriceField" promptText="Enter buy price"
+                       GridPane.columnIndex="1" GridPane.rowIndex="0" prefWidth="200"/>
+
+            <!-- Sell Price -->
+            <Label text="Sell Price:" GridPane.columnIndex="0" GridPane.rowIndex="1"
+                   style="-fx-font-weight: bold;"/>
+            <TextField fx:id="sellPriceField" promptText="Enter sell price"
+                       GridPane.columnIndex="1" GridPane.rowIndex="1" prefWidth="200"/>
+
+            <!-- Lot Size -->
+            <Label text="Lot Size (0.01-500):" GridPane.columnIndex="0" GridPane.rowIndex="2"
+                   style="-fx-font-weight: bold;"/>
+            <TextField fx:id="lotSizeField" promptText="Enter lot size"
+                       GridPane.columnIndex="1" GridPane.rowIndex="2" prefWidth="200"/>
+
+            <!-- Take Profit Type -->
+            <Label text="Order Type:" GridPane.columnIndex="0" GridPane.rowIndex="3"
+                   style="-fx-font-weight: bold;"/>
+            <ComboBox fx:id="takeProfitCombo" GridPane.columnIndex="1" GridPane.rowIndex="3"
+                      prefWidth="200"/>
+
+            <!-- Column Constraints -->
+            <columnConstraints>
+                <ColumnConstraints minWidth="120"/>
+                <ColumnConstraints minWidth="200"/>
+            </columnConstraints>
+        </GridPane>
+    </TitledPane>
+
+    <!-- Leverage Section -->
+    <TitledPane text="Leverage Selection" collapsible="false" style="-fx-font-size: 14;">
+        <VBox spacing="10" style="-fx-padding: 15;">
+            <Label text="Select Leverage Ratio:" style="-fx-font-weight: bold;"/>
+            <fx:define>
+                <ToggleGroup fx:id="leverageGroup"/>
+            </fx:define>
+            <GridPane hgap="10" vgap="10">
+
+                <RadioButton text="1/10" toggleGroup="$leverageGroup" selected="true"
+                             GridPane.columnIndex="0" GridPane.rowIndex="0"
+                             onAction="#onLeverageButtonClicked"/>
+                <RadioButton text="1/20" toggleGroup="$leverageGroup"
+                             GridPane.columnIndex="1" GridPane.rowIndex="0"
+                             onAction="#onLeverageButtonClicked"/>
+                <RadioButton text="1/30" toggleGroup="$leverageGroup"
+                             GridPane.columnIndex="2" GridPane.rowIndex="0"
+                             onAction="#onLeverageButtonClicked"/>
+                <RadioButton text="1/50" toggleGroup="$leverageGroup"
+                             GridPane.columnIndex="3" GridPane.rowIndex="0"
+                             onAction="#onLeverageButtonClicked"/>
+
+                <RadioButton text="1/100" toggleGroup="$leverageGroup"
+                             GridPane.columnIndex="0" GridPane.rowIndex="1"
+                             onAction="#onLeverageButtonClicked"/>
+                <RadioButton text="1/200" toggleGroup="$leverageGroup"
+                             GridPane.columnIndex="1" GridPane.rowIndex="1"
+                             onAction="#onLeverageButtonClicked"/>
+                <RadioButton text="1/500" toggleGroup="$leverageGroup"
+                             GridPane.columnIndex="2" GridPane.rowIndex="1"
+                             onAction="#onLeverageButtonClicked"/>
+            </GridPane>
+        </VBox>
+    </TitledPane>
+
+    <!-- Margin Display -->
+    <TitledPane text="Margin Display" collapsible="false" style="-fx-font-size: 14;">
+        <VBox style="-fx-padding: 15;">
+            <Label fx:id="marginDisplayLabel" text="Margin: --"
+                   style="-fx-font-size: 14; -fx-text-fill: #0066cc;"/>
+        </VBox>
+    </TitledPane>
+
+    <!-- Results Section -->
+    <TitledPane text="Calculation Result" collapsible="false" style="-fx-font-size: 14;">
+        <VBox style="-fx-padding: 15;">
+            <Label fx:id="resultLabel" text="Result: --"
+                   style="-fx-font-size: 18; -fx-font-weight: bold;"/>
+        </VBox>
+    </TitledPane>
+
+    <!-- Action Buttons -->
+    <HBox spacing="10" style="-fx-alignment: center;">
+        <Button text="Clear All" onAction="#onClearAll" style="-fx-padding: 10; -fx-font-size: 12;"/>
+    </HBox>
+</VBox>
+
